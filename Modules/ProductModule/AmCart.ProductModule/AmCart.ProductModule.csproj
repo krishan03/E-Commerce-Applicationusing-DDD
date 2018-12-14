@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AmCart.Core">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.AppServices">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.AppServices.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.Data">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.Domain">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore.relational\2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /y &quot;$(TargetDir)$(TargetFileName)&quot; &quot;$(ProjectDir)\..\..\..\Lib\Modules\ProductModule\&quot;" />
+  </Target>
+
+</Project>

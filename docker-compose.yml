@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  amcart.productmodule.webapi:
+    image: ${DOCKER_REGISTRY}amcartproductmodulewebapi
+    build:
+      context: .
+      dockerfile: Modules\ProductModule\AmCart.ProductModule.WebAPI\Dockerfile

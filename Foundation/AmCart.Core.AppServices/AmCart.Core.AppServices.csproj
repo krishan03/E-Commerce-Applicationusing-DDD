@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /y &quot;$(TargetDir)$(TargetFileName)&quot; &quot;$(ProjectDir)\..\..\Lib\Foundation\&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="AmCart.Core">
+      <HintPath>..\..\Lib\Foundation\AmCart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.Data">
+      <HintPath>..\..\Lib\Foundation\AmCart.Core.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

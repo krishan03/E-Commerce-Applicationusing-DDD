@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>c5f1ba62-53d4-44b3-87e8-ab02cdedba53</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
+    <PackageReference Include="NLog" Version="4.5.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AmCart.Core">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.AppServices">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.AppServices.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.Data">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Core.WebMVC">
+      <HintPath>..\..\..\Lib\Foundation\AmCart.Core.WebMVC.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.Logging.NLog">
+      <HintPath>..\..\..\Lib\PlugIn\AmCart.Logging.NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="AmCart.ProductModule">
+      <HintPath>..\..\..\Lib\Modules\ProductModule\AmCart.ProductModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /y &quot;$(TargetDir)$(TargetFileName)&quot; &quot;$(ProjectDir)\..\..\..\Lib\Modules\ProductModule\&quot;" />
+  </Target>
+
+</Project>
